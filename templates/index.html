@@ -37,7 +37,7 @@
               on {{post.date}}</p>
           </div>
 
-          {{post.content[0:143]}}...
+          {{post.content[0:143]|safe}}...
           <hr>
 </li></a>
           {% endfor %}
