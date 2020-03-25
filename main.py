@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 from werkzeug import secure_filename
 from flask_mail import Mail
 import json
@@ -48,6 +49,13 @@ class Posts(db.Model):
     tagline = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(12), nullable=True)
     img_file = db.Column(db.String(12), nullable=True)
+
+
+def updatesno(sno):
+    eng = create_engine(params['local_uri'])
+    with eng.connect() as con:
+        rs = con.execute(f"UPDATE posts SET sno=sno-1 WHERE sno > {sno}")
+    return "updated"
 
 
 @app.route("/")
@@ -158,6 +166,7 @@ def delete(sno):
         post = Posts.query.filter_by(sno=sno).first()
         db.session.delete(post)
         db.session.commit()
+        updatesno(sno)
     return redirect('/dashboard')
 
 
