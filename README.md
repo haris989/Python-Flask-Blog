@@ -13,7 +13,7 @@ create database name codingthunder and import codingthunder.sql in it
 run command 
 ```
 pip install -r requremet.txt
-python app.py
+python main.py
 ```
 
 this will start a webserver on the localhost
