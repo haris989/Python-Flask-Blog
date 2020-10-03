@@ -179,5 +179,5 @@ def contact():
                           )
     return render_template('contact.html', params=params)
 
-
+# app.run command for using this is automatically relode the server in local machine
 app.run(debug=True)
