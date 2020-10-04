@@ -11,14 +11,11 @@
     "tag_line": "Heaven for programmers",
     "gmail-user":"your-email@gmail.com",
     "gmail-password":"gmailpassword",
-    "about_text": "Hi my name is harry and I create programming tutorials and I am a good boy",
+    "about_text": "blog-about-text-here",
     "no_of_posts": 3,
     "login_image":"login.svg",
     "admin_user":"harry",
-    "admin_password": "subscribenow",
+    "admin_password": "password-here",
     "upload_location":"C:\\Users\\Haris\\PycharmProjects\\Flask-tut\\static"
-
-
   }
-
 }
