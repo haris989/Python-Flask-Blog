@@ -54,8 +54,6 @@ class Posts(db.Model):
 def home():
     posts = Posts.query.filter_by().all()
     last = math.ceil(len(posts)/int(params['no_of_posts']))
-    #[0: params['no_of_posts']]
-    #posts = posts[]
     page = request.args.get('page')
     if(not str(page).isnumeric()):
         page = 1
@@ -72,9 +70,6 @@ def home():
     else:
         prev = "/?page=" + str(page - 1)
         next = "/?page=" + str(page + 1)
-
-
-
     return render_template('index.html', params=params, posts=posts, prev=prev, next=next)
 
 
@@ -82,6 +77,7 @@ def home():
 def post_route(post_slug):
     post = Posts.query.filter_by(slug=post_slug).first()
     return render_template('post.html', params=params, post=post)
+
 
 @app.route("/about")
 def about():
@@ -95,12 +91,13 @@ def dashboard():
         posts = Posts.query.all()
         return render_template('dashboard.html', params=params, posts = posts)
 
-
+    
     if request.method=='POST':
         username = request.form.get('uname')
         userpass = request.form.get('pass')
         if (username == params['admin_user'] and userpass == params['admin_password']):
-            #set the session variable
+            
+            #Set the session variable
             session['user'] = username
             posts = Posts.query.all()
             return render_template('dashboard.html', params=params, posts = posts)
@@ -146,11 +143,11 @@ def uploader():
             return "Uploaded successfully"
 
 
-
 @app.route("/logout")
 def logout():
     session.pop('user')
     return redirect('/dashboard')
+
 
 @app.route("/delete/<string:sno>", methods = ['GET', 'POST'])
 def delete(sno):
@@ -159,7 +156,6 @@ def delete(sno):
         db.session.delete(post)
         db.session.commit()
     return redirect('/dashboard')
-
 
 
 @app.route("/contact", methods = ['GET', 'POST'])
@@ -180,4 +176,5 @@ def contact():
     return render_template('contact.html', params=params)
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
