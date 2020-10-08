@@ -8,6 +8,9 @@ import math
 from datetime import datetime
 
 
+
+
+
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
@@ -178,6 +181,10 @@ def contact():
                           body = message + "\n" + phone
                           )
     return render_template('contact.html', params=params)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error404.html'), 404
 
 
 app.run(debug=True)
