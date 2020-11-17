@@ -179,5 +179,5 @@ def contact():
                           )
     return render_template('contact.html', params=params)
 
-
+#this code to run the program it is necessary for run the code.
 app.run(debug=True)
