@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug import secure_filename
 from flask_mail import Mail
 import json
-import os
 import math
 from datetime import datetime
 
@@ -142,7 +141,7 @@ def uploader():
     if ('user' in session and session['user'] == params['admin_user']):
         if (request.method == 'POST'):
             f= request.files['file1']
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename) ))
+            f.save((app.config['UPLOAD_FOLDER'])+'\\'+secure_filename(f.filename))
             return "Uploaded successfully"
 
 
