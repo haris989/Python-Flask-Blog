@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from flask_mail import Mail
 import json
 import os
@@ -149,7 +149,7 @@ def uploader():
 
 @app.route("/logout")
 def logout():
-    session.pop('user')
+    session.pop('user', None)
     return redirect('/dashboard')
 
 @app.route("/delete/<string:sno>", methods = ['GET', 'POST'])
